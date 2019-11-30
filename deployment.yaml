@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: employee-service
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: employee-service
+    spec:
+      containers:
+      - name: employee-service
+        image: 990456062402.dkr.ecr.us-east-1.amazonaws.com/employee-service:latest
+        ports:
+        - containerPort: 80

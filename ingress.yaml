@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "bank-ingress"
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+  labels:
+    app: bank-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /address/*
+            backend:
+              serviceName: "address-service"
+              servicePort: 8083
+          - path: /employee/*
+            backend:
+              serviceName: "employee-service"
+              servicePort: 8082
+          

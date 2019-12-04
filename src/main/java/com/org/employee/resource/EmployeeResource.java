@@ -3,7 +3,6 @@ package com.org.employee.resource;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,18 +16,16 @@ import com.org.employee.domain.Employee;
 @RequestMapping("/employee")
 public class EmployeeResource {
 
-	@Autowired
-	private RestTemplate restTemplate;
-	
 	private String addressServiceId="address-service";
-	//private String addressServicePort="8083";
+	private String addressServicePort="8083";
 	
 	@GetMapping(value = "/{empId}")
 	public Employee getEmployeeDetails(@PathVariable int empId) {
 
 		List<Employee> employeeList = getAllEmployees();
-		Employee emp = new Employee();		
-		Address address = restTemplate.getForObject("http://"+addressServiceId+"/address/1", Address.class);
+		Employee emp = new Employee();
+		 RestTemplate restTemplate = new RestTemplate();
+		Address address = restTemplate.getForObject("http://"+addressServiceId+":"+addressServicePort+"/address/1", Address.class);
 
 		for (Employee employee : employeeList) {
 			if (employee.getEmpId() == empId) {

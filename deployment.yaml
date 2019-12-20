@@ -11,6 +11,6 @@ spec:
     spec:
       containers:
       - name: employee-service
-        image: 508607970941.dkr.ecr.us-east-1.amazonaws.com/employee-service:latest
+        image: 595687684834.dkr.ecr.us-east-1.amazonaws.com/employee-service:latest
         ports:
         - containerPort: 80

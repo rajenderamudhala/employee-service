@@ -11,4 +11,4 @@ spec:
     port: 8082     
   selector:
     app: employee-service
-  type: LoadBalancer
+  type: NodePort
